@@ -51,12 +51,14 @@ function newTeam() {
                 }
             })
     }
+    promptUser();
+}
 
-    function addEngineer() {
+function addEngineer() {
 
-        // Create an array of questions for user input
-        const promptUser = () => {
-            return inquirer.prompt([{
+    // Create an array of questions for user input
+    const promptUser = () => {
+        return inquirer.prompt([{
                     type: 'input',
                     name: 'name',
                     message: 'What is the Engineers name?',
@@ -73,7 +75,7 @@ function newTeam() {
                 },
                 {
                     type: 'input',
-                    name: 'officeNumber',
+                    name: 'github',
                     message: 'What is the Engineers Github User Name?',
                 },
                 {
@@ -84,65 +86,80 @@ function newTeam() {
                 },
             ])
             .then(answer => {
-                const engineer = new Engineer(answer.name, answer.id, answer.email, answer.officeNumber);
+                const engineer = new Engineer(answer.name, answer.id, answer.email, answer.github);
                 employees.push(engineer);
 
-                if (answer.addToTeam === "Add New Engineer")
-                {
+                if (answer.addToTeam === "Add New Engineer") {
                     addEngineer();
-                } else if (answer.addToTeam === "Add New Engineer")
-                {
+                } else if (answer.addToTeam === "Add New Intern") {
                     addIntern();
                 } else {
-                    generateHTML(); // need to make this function
+                    // generateHTML(); // need to make this function
+                    console.log('All Done!');
+                    console.log(employees);
                 }
             })
-        }
     }
+    promptUser();
+}
 
-function addInter() {
+function addIntern() {
 
     // Create an array of questions for user input
     const promptUser = () => {
         return inquirer.prompt([{
-                type: 'input',
-                name: 'name',
-                message: 'What is the Interns name?',
-            },
-            {
-                type: 'input',
-                name: 'id',
-                message: 'What is the Interns ID?',
-            },
-            {
-                type: 'input',
-                name: 'email',
-                message: 'What is the Interns email?',
-            },
-            {
-                type: 'input',
-                name: 'officeNumber',
-                message: 'What is the Interns School?',
-            },
-            {
-                type: 'list', //change to list 
-                name: 'addToTeam',
-                message: 'Add a new Team Member or Complete Team',
-                choices: ["Add New Engineer", "Add New Intern", "Complete"]
-            },
-        ])
+                    type: 'input',
+                    name: 'name',
+                    message: 'What is the Interns name?',
+                },
+                {
+                    type: 'input',
+                    name: 'id',
+                    message: 'What is the Interns ID?',
+                },
+                {
+                    type: 'input',
+                    name: 'email',
+                    message: 'What is the Interns email?',
+                },
+                {
+                    type: 'input',
+                    name: 'school',
+                    message: 'What is the Interns School?',
+                },
+                {
+                    type: 'list', //change to list 
+                    name: 'addToTeam',
+                    message: 'Add a new Team Member or Complete Team',
+                    choices: ["Add New Engineer", "Add New Intern", "Complete"]
+                },
+            ])
+            .then(answer => {
+                const intern = new Intern(answer.name, answer.id, answer.email, answer.school);
+                employees.push(intern);
+
+                if (answer.addToTeam === "Add New Engineer") {
+                    addEngineer();
+                } else if (answer.addToTeam === "Add New Intern") {
+                    addIntern();
+                } else {
+                    // generateHTML(); // need to make this function
+                    console.log('All Done!');
+                    console.log(employees.keys);
+                    
+                }
+            })
     }
+    promptUser();
 }
 
 
 
 
 
+function init() {
+    newTeam();
+    
+}
 
-
-
-    function init() {
-
-    }
-
-    init();
+init();
