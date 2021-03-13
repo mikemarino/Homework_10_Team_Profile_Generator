@@ -241,7 +241,7 @@ body {margin-bottom: 15px;}
             console.error(err)
             return
         }
-        console.log('Successfully wrote to myTeam.html')
+        console.log('Successfully wrote to newTeam.html')
     });
 }
 
