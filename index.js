@@ -16,7 +16,6 @@ function newTeam() {
         return inquirer.prompt([{
                     type: 'input',
                     name: 'name',
-
                     message: 'What is the Team Managers name?',
                 },
                 {
@@ -89,71 +88,17 @@ function addEngineer() {
             .then(answer => {
                 const engineer = new Engineer(answer.name, answer.id, answer.email, answer.github);
                 employees.push(engineer);
-
                 if (answer.addToTeam === "Add New Engineer") {
                     addEngineer();
                 } else if (answer.addToTeam === "Add New Intern") {
                     addIntern();
                 } else {
-
-
                     generateHTML()
-
-                    // for (let employee of employees) {
-                    //     console.log(employee.constructor.name);
-                    // }
-                    // console.log(Object.entries(Manager));
-
-
-                    // console.log(employees.Manager);
-                    // employees.forEach(function (value, index, array) {
-                    //     // console.log(value);
-                    //     console.log(index);
-                    //     // console.log(array);
-                    // });
-
-                    // for (let i = 0, l = employees.length; i < l; i++) {
-                    // // `i` will take on the values `0`, `1`, `2`,..., i.e. in each iteration
-                    // // we can access the next element in the array with `data.items[i]`, example:
-                    // // 
-                    // var obj = employees.Manager[i];
-                    // console.log(obj);
-                    // var obj2 = employees.Intern[i];
-                    // console.log(obj2);
-                    // // Since each element is an object (in our example),
-                    // // we can now access the objects properties with `obj.id` and `obj.name`. 
-                    // // We could also use `data.items[i].id`.
-                    // }       
-
-                    // // generateHTML(); // need to make this function
-                    // console.log('All Done!');
-                    // console.log(typeof employees);
-                    // console.log("----------------------");
-                    // console.log(Object.getOwnPropertyDescriptor(employees));
-                    // console.log("----------------------");
-                    // console.log(Object.getOwnPropertyNames(employees));
-                    // console.log("----------------------");
-                    // console.log(Object.getPrototypeOf(employees));
-                    // console.log("----------------------");
-                    // console.log(Object.is(employees));
-                    // console.log("----------------------");
-                    // console.log(Object.prototype.valueOf(employees));
-                    // console.log("----------------------");
-                    // console.log(Object.values(employees));
-                    // console.log("----------------------");
-                    // console.log(Object.fromEntries(employees));
-                    // console.log("----------------------");
-
-
                 }
             })
-
-        // .then(answers => {
-        //     generate_cards(answers);
-        // })
     }
     promptUser();
-    generate_cards(employees);
+
 }
 
 function addIntern() {
@@ -190,57 +135,12 @@ function addIntern() {
             .then(answer => {
                 const intern = new Intern(answer.name, answer.id, answer.email, answer.school);
                 employees.push(intern);
-
                 if (answer.addToTeam === "Add New Engineer") {
                     addEngineer();
                 } else if (answer.addToTeam === "Add New Intern") {
                     addIntern();
                 } else {
-                    generateHTML()
-
-
-                    //  employees.Manager.getRole();
-
-                    // employees.forEach(function (value, index, array) {
-                    //     // console.log(value);
-                    //     console.log(index);
-                    //     // console.log(array);
-                    // });
-
-                    //             for(let i = 0; l = employees.items.length; i < l; i++) {
-
-                    // }
-
-                    // for (let i = 0, l = employees.length; i < l; i++) {
-                    //     // `i` will take on the values `0`, `1`, `2`,..., i.e. in each iteration
-                    //     // we can access the next element in the array with `data.items[i]`, example:
-                    //     // 
-                    //     var obj = employees.Manager[i].name;
-                    //     console.log(obj);
-                    //     var obj2 = employees.Intern[i].name;
-                    //     console.log(obj2);
-                    //     // Since each element is an object (in our example),
-                    //     // we can now access the objects properties with `obj.id` and `obj.name`. 
-                    //     // We could also use `data.items[i].id`.
-                    // }
-                    // generateHTML(); // need to make this function
-                    // console.log('All Done!');
-                    // console.log(Object.entries(Manager));
-                    // console.log("----------------------");
-                    // console.log(Object.getOwnPropertyDescriptor(employees));
-                    // console.log("----------------------");
-                    // console.log(Object.getOwnPropertyNames(employees));
-                    // console.log("----------------------");
-                    // console.log(Object.getPrototypeOf(employees));
-                    // console.log("----------------------");
-                    // console.log(Object.is(employees));
-                    // console.log("----------------------");
-                    // console.log(Object.prototype.valueOf(employees));
-                    // console.log("----------------------");
-                    // console.log(Object.values(employees));
-                    // console.log("----------------------");
-                    // console.log(Object.fromEntries(employees));
-                    // console.log("----------------------");
+                    generateHTML();
 
                 }
             })
@@ -250,26 +150,99 @@ function addIntern() {
 }
 
 function generateHTML() {
+
+    let html = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Team</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<style>
+body { margin-bottom: 2em; }
+.card { margin-bottom: 2em; }
+</style>
+</head>
+<body>
+<div class="jumbotron text-center">
+<h1>My Team</h1>
+</div>
+<div class="container">
+<div class="row">
+`
+
     for (let employee of employees) {
         console.log(employee.constructor.name);
 
         switch (employee.constructor.name) {
             case "Manager":
-                console.log(employee.getRole());
-                //  html = html.replace(/{% officeNumber %}/gi, employee.officeNumber);
+                html = html + `
+                <div class="col-md-4 col-lg-4">
+                <div class="card">
+                <div class="card-header">
+                <h2>${employee.getName()}</h2>
+                <h3><i class="fas fa-user-tie"></i> ${employee.getRole()}</h3>
+                </div>
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item">ID: ${employee.getID()}</li>
+                <li class="list-group-item">Office: ${employee.getOffice()}</li>
+                <li class="list-group-item"> Email: <a href = "mailto:${employee.getEmail()}"> ${employee.getEmail()} </a></li>
+                </ul>
+                </div>
+                </div>
+                `
                 break;
             case "Engineer":
-                console.log(employee.getRole());
-                //  html = html.replace(/{% github %}/gi, employee.github);
+                html = html + `
+                <div class="col-md-4 col-lg-4">
+                <div class="card">
+                <div class="card-header">
+                <h2>${employee.getName()}</h2>
+                <h3><i class="far fa-lightbulb"></i> ${employee.getRole()}</h3>
+                </div>
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item">ID: ${employee.getID()}</li>
+                <li class="list-group-item">Github: <a href="https://github.com/${employee.getGithub()}">${employee.getGithub()}</a></li>
+                <li class="list-group-item"> Email: <a href = "mailto:${employee.getEmail()}"> ${employee.getEmail()} </a></li>
+                </ul>
+                </div>
+                </div>
+                `
                 break;
             case "Intern":
-                console.log(employee.getRole());
-                //  html = html.replace(/{% school %}/gi, employee.school);
+                html = html + `
+                <div class="col-md-4 col-lg-4">
+                <div class="card">
+                <div class="card-header">
+                <h2>${employee.getName()}</h2>
+                <h3><i class="fas fa-graduation-cap"></i> ${employee.getRole()}</h3>
+                </div>
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item">ID: ${employee.getID()}</li>
+                <li class="list-group-item">School: ${employee.getSchool()}</li>
+                <li class="list-group-item"> Email: <a href = "mailto:${employee.getEmail()}"> ${employee.getEmail()} </a></li>
+                </ul>
+                </div>
+                </div>
+                `
                 break;
         }
-        //  employeesHTML += html;
-
     }
+
+    html = html +
+        `</div>
+        </body>
+        </html>
+        `
+    fs.writeFile('myTeam.html', html, (err) => {
+        if (err) {
+            console.error(err)
+            return
+        }
+        console.log('Successfully wrote to myTeam.html')
+    });
 }
 
 
@@ -295,3 +268,51 @@ function init() {
 }
 
 init();
+
+
+// #########################################
+// ###### old code for retention
+// #########################################
+
+//  employees.Manager.getRole();
+
+// employees.forEach(function (value, index, array) {
+//     // console.log(value);
+//     console.log(index);
+//     // console.log(array);
+// });
+
+//             for(let i = 0; l = employees.items.length; i < l; i++) {
+
+// }
+
+// for (let i = 0, l = employees.length; i < l; i++) {
+//     // `i` will take on the values `0`, `1`, `2`,..., i.e. in each iteration
+//     // we can access the next element in the array with `data.items[i]`, example:
+//     // 
+//     var obj = employees.Manager[i].name;
+//     console.log(obj);
+//     var obj2 = employees.Intern[i].name;
+//     console.log(obj2);
+//     // Since each element is an object (in our example),
+//     // we can now access the objects properties with `obj.id` and `obj.name`. 
+//     // We could also use `data.items[i].id`.
+// }
+// generateHTML(); // need to make this function
+// console.log('All Done!');
+// console.log(Object.entries(Manager));
+// console.log("----------------------");
+// console.log(Object.getOwnPropertyDescriptor(employees));
+// console.log("----------------------");
+// console.log(Object.getOwnPropertyNames(employees));
+// console.log("----------------------");
+// console.log(Object.getPrototypeOf(employees));
+// console.log("----------------------");
+// console.log(Object.is(employees));
+// console.log("----------------------");
+// console.log(Object.prototype.valueOf(employees));
+// console.log("----------------------");
+// console.log(Object.values(employees));
+// console.log("----------------------");
+// console.log(Object.fromEntries(employees));
+// console.log("----------------------");
