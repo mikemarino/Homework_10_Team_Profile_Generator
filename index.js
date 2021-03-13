@@ -161,13 +161,13 @@ function generateHTML() {
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <style>
-body { margin-bottom: 2em; }
-.card { margin-bottom: 2em; }
+body { margin-bottom: 15px; }
+.card { margin-bottom: 15px; }
 </style>
 </head>
 <body>
-<div class="jumbotron text-center">
-<h1>My Team</h1>
+<div div class = "jumbotron text-center bg-info text-white-50" >
+<h1>New Team Profile</h1>
 </div>
 <div class="container">
 <div class="row">
@@ -181,7 +181,7 @@ body { margin-bottom: 2em; }
                 html = html + `
                 <div class="col-md-4 col-lg-4">
                 <div class="card">
-                <div class="card-header">
+                <div class = "card-header bg-success text-white" >
                 <h2>${employee.getName()}</h2>
                 <h3><i class="fas fa-user-tie"></i> ${employee.getRole()}</h3>
                 </div>
@@ -198,7 +198,7 @@ body { margin-bottom: 2em; }
                 html = html + `
                 <div class="col-md-4 col-lg-4">
                 <div class="card">
-                <div class="card-header">
+                <div class = "card-header bg-primary text-white">
                 <h2>${employee.getName()}</h2>
                 <h3><i class="far fa-lightbulb"></i> ${employee.getRole()}</h3>
                 </div>
@@ -215,7 +215,7 @@ body { margin-bottom: 2em; }
                 html = html + `
                 <div class="col-md-4 col-lg-4">
                 <div class="card">
-                <div class="card-header">
+                <div class = "card-header bg-warning text-white">
                 <h2>${employee.getName()}</h2>
                 <h3><i class="fas fa-graduation-cap"></i> ${employee.getRole()}</h3>
                 </div>
@@ -236,7 +236,7 @@ body { margin-bottom: 2em; }
         </body>
         </html>
         `
-    fs.writeFile('myTeam.html', html, (err) => {
+    fs.writeFile('./dist/newTeam.html', html, (err) => {
         if (err) {
             console.error(err)
             return
@@ -245,26 +245,8 @@ body { margin-bottom: 2em; }
     });
 }
 
-
-function generate_cards(employees) {
-
-    let cardsHTML = ""
-
-    employees.forEach(teamMember => {
-
-        if (teamMember.role == "Manager") {
-            console.log('YES');
-        };
-
-        console.log('NOOOOOO');
-
-    });
-}
-
 function init() {
     newTeam();
-
-
 }
 
 init();
